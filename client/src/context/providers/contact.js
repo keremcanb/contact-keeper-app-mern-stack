@@ -21,7 +21,7 @@ const initialState = {
   filtered: null,
   error: null
 };
-const config = {
+const headers = {
   headers: {
     'Content-Type': 'application/json'
   }
@@ -48,7 +48,7 @@ export const ContactProvider = ({ children }) => {
 
   const addContact = async (contact) => {
     try {
-      const { data } = await post('/api/contacts', contact, config);
+      const { data } = await post('/api/contacts', contact, headers);
       dispatch({
         type: ADD_CONTACT,
         payload: data
@@ -78,7 +78,7 @@ export const ContactProvider = ({ children }) => {
 
   const updateContact = async (contact) => {
     try {
-      const { data } = await put(`/api/contacts/${contact._id}`, contact, config);
+      const { data } = await put(`/api/contacts/${contact._id}`, contact, headers);
       dispatch({
         type: UPDATE_CONTACT,
         payload: data
@@ -103,8 +103,8 @@ export const ContactProvider = ({ children }) => {
     dispatch({ type: CLEAR_CURRENT });
   };
 
-  const filterContacts = (text) => {
-    dispatch({ type: FILTER_CONTACTS, payload: text });
+  const filterContacts = (input) => {
+    dispatch({ type: FILTER_CONTACTS, payload: input });
   };
 
   const clearFilter = () => {

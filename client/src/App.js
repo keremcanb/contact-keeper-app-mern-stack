@@ -5,7 +5,7 @@ import About from './pages/About';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Alerts from './components/Alerts';
-import PrivateRoute from './routing/PrivateRoute';
+import PrivateRoute from './components/PrivateRoute';
 import { AlertProvider, AuthProvider, ContactProvider } from './context/providers';
 import './App.css';
 

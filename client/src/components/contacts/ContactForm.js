@@ -26,10 +26,6 @@ const ContactForm = () => {
 
   const onChange = (e) => setContact({ ...contact, [e.target.name]: e.target.value });
 
-  const clearAll = () => {
-    clearCurrentContact();
-  };
-
   const onSubmit = (e) => {
     e.preventDefault();
     if (current === null) {
@@ -37,7 +33,7 @@ const ContactForm = () => {
     } else {
       updateContact(contact);
     }
-    clearAll();
+    clearCurrentContact();
   };
 
   return (
@@ -61,7 +57,7 @@ const ContactForm = () => {
       </div>
       {current && (
         <div>
-          <button className="btn btn-light btn-block" onClick={clearAll}>
+          <button className="btn btn-light btn-block" onClick={clearCurrentContact}>
             Clear
           </button>
         </div>

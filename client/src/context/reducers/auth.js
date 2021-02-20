@@ -11,6 +11,7 @@ import {
 
 export default (state, action) => {
   const { type, payload } = action;
+
   switch (type) {
     case USER_LOADED:
       return {

@@ -21,7 +21,7 @@ const initialState = {
   user: null,
   error: null
 };
-const config = {
+const headers = {
   headers: {
     'Content-Type': 'application/json'
   }
@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }) => {
 
   const registerUser = async (formData) => {
     try {
-      const { data } = await post('/api/users', formData, config);
+      const { data } = await post('/api/users', formData, headers);
       dispatch({
         type: REGISTER_SUCCESS,
         payload: data
@@ -62,7 +62,7 @@ export const AuthProvider = ({ children }) => {
 
   const loginUser = async (formData) => {
     try {
-      const { data } = await post('/api/auth', formData, config);
+      const { data } = await post('/api/auth', formData, headers);
       dispatch({
         type: LOGIN_SUCCESS,
         payload: data
