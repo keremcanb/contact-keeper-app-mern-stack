@@ -1,20 +1,18 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Navbar from './components/layout/Navbar';
-import Home from './components/pages/Home';
-import About from './components/pages/About';
-import Register from './components/auth/Register';
-import Login from './components/auth/Login';
-import Alerts from './components/layout/Alerts';
-import PrivateRoute from './components/routing/PrivateRoute';
-import ContactState from './context/contact/ContactState';
-import AuthState from './context/auth/AuthState';
-import AlertState from './context/alert/AlertState';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import About from './pages/About';
+import Register from './pages/Register';
+import Login from './pages/Login';
+import Alerts from './components/Alerts';
+import PrivateRoute from './routing/PrivateRoute';
+import { AlertProvider, AuthProvider, ContactProvider } from './context/providers';
 import './App.css';
 
 const App = () => (
-  <AuthState>
-    <ContactState>
-      <AlertState>
+  <AuthProvider>
+    <ContactProvider>
+      <AlertProvider>
         <Router>
           <>
             <Navbar />
@@ -29,9 +27,9 @@ const App = () => (
             </div>
           </>
         </Router>
-      </AlertState>
-    </ContactState>
-  </AuthState>
+      </AlertProvider>
+    </ContactProvider>
+  </AuthProvider>
 );
 
 export default App;

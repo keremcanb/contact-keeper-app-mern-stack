@@ -1,6 +1,6 @@
-import { useState, useContext, useEffect } from 'react';
-import AuthContext from '../../context/auth/authContext';
-import AlertContext from '../../context/alert/alertContext';
+import { useState, useEffect } from 'react';
+import { useAuthContext } from '../context/providers/auth';
+import { useAlertContext } from '../context/providers/alert';
 
 const Login = ({ history }) => {
   const [user, setUser] = useState({
@@ -8,10 +8,8 @@ const Login = ({ history }) => {
     password: ''
   });
   const { email, password } = user;
-  const alertContext = useContext(AlertContext);
-  const { setAlert } = alertContext;
-  const authContext = useContext(AuthContext);
-  const { loginUser, error, clearErrors, isAuthenticated } = authContext;
+  const { setAlert } = useAlertContext();
+  const { loginUser, error, clearErrors, isAuthenticated } = useAuthContext();
 
   useEffect(() => {
     if (isAuthenticated) {

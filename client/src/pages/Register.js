@@ -1,6 +1,6 @@
-import { useState, useContext, useEffect } from 'react';
-import AlertContext from '../../context/alert/alertContext';
-import AuthContext from '../../context/auth/authContext';
+import { useState, useEffect } from 'react';
+import { useAlertContext } from '../context/providers/alert';
+import { useAuthContext } from '../context/providers/auth';
 
 const Register = ({ history }) => {
   const [user, setUser] = useState({
@@ -10,10 +10,8 @@ const Register = ({ history }) => {
     passwordConfirm: ''
   });
   const { name, email, password, passwordConfirm } = user;
-  const alertContext = useContext(AlertContext);
-  const { setAlert } = alertContext;
-  const authContext = useContext(AuthContext);
-  const { registerUser, error, clearErrors, isAuthenticated } = authContext;
+  const { setAlert } = useAlertContext();
+  const { registerUser, error, clearErrors, isAuthenticated } = useAuthContext();
 
   useEffect(() => {
     if (isAuthenticated) {

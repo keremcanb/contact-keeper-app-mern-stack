@@ -1,7 +1,6 @@
-import { useReducer } from 'react';
+import { useReducer, createContext, useContext } from 'react';
 import axios, { get, post, put } from 'axios';
-import ContactContext from './contactContext';
-import contactReducer from './contactReducer';
+import reducer from '../reducers/contact';
 import {
   GET_CONTACTS,
   ADD_CONTACT,
@@ -15,20 +14,22 @@ import {
   CONTACT_ERROR
 } from '../types';
 
-const ContactState = ({ children }) => {
-  const initialState = {
-    contacts: null,
-    current: null,
-    filtered: null,
-    error: null
-  };
-  const [state, dispatch] = useReducer(contactReducer, initialState);
+const ContactContext = createContext();
+const initialState = {
+  contacts: null,
+  current: null,
+  filtered: null,
+  error: null
+};
+const config = {
+  headers: {
+    'Content-Type': 'application/json'
+  }
+};
+
+export const ContactProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
   const { contacts, current, filtered, error } = state;
-  const config = {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  };
 
   const getContacts = async () => {
     try {
@@ -133,4 +134,4 @@ const ContactState = ({ children }) => {
   );
 };
 
-export default ContactState;
+export const useContactContext = () => useContext(ContactContext);

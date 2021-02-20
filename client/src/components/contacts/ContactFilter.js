@@ -1,10 +1,9 @@
-import { useContext, useRef, useEffect } from 'react';
-import ContactContext from '../../context/contact/contactContext';
+import { useRef, useEffect } from 'react';
+import { useContactContext } from '../../context/providers/contact';
 
 const ContactFilter = () => {
   const text = useRef('');
-  const contactContext = useContext(ContactContext);
-  const { filterContacts, clearFilter, filtered } = contactContext;
+  const { filterContacts, clearFilter, filtered } = useContactContext();
 
   useEffect(() => {
     if (filtered === null) {

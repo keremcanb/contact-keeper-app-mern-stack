@@ -1,14 +1,12 @@
-import { Fragment, useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import AuthContext from '../../context/auth/authContext';
-import ContactContext from '../../context/contact/contactContext';
+import { useAuthContext } from '../context/providers/auth';
+import { useContactContext } from '../context/providers/contact';
 
 const Navbar = ({ title, icon }) => {
-  const authContext = useContext(AuthContext);
-  const { isAuthenticated, logoutUser, user, loadUser } = authContext;
-  const contactContext = useContext(ContactContext);
-  const { clearContacts } = contactContext;
+  const { isAuthenticated, logoutUser, user, loadUser } = useAuthContext();
+  const { clearContacts } = useContactContext();
 
   useEffect(() => {
     loadUser();

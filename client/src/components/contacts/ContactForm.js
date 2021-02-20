@@ -1,5 +1,5 @@
-import { useState, useContext, useEffect } from 'react';
-import ContactContext from '../../context/contact/contactContext';
+import { useState, useEffect } from 'react';
+import { useContactContext } from '../../context/providers/contact';
 
 const ContactForm = () => {
   const [contact, setContact] = useState({
@@ -9,8 +9,7 @@ const ContactForm = () => {
     type: 'personal'
   });
   const { name, email, phone, type } = contact;
-  const contactContext = useContext(ContactContext);
-  const { addContact, updateContact, clearCurrentContact, current } = contactContext;
+  const { addContact, updateContact, clearCurrentContact, current } = useContactContext();
 
   useEffect(() => {
     if (current !== null) {
@@ -23,7 +22,7 @@ const ContactForm = () => {
         type: 'personal'
       });
     }
-  }, [contactContext, current]);
+  }, [current]);
 
   const onChange = (e) => setContact({ ...contact, [e.target.name]: e.target.value });
 

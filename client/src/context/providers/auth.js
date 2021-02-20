@@ -1,7 +1,6 @@
-import { useReducer } from 'react';
+import { useReducer, createContext, useContext } from 'react';
 import { get, post } from 'axios';
-import AuthContext from './authContext';
-import authReducer from './authReducer';
+import reducer from '../reducers/auth';
 import setAuthToken from '../../utils/setAuthToken';
 import {
   REGISTER_SUCCESS,
@@ -14,21 +13,23 @@ import {
   CLEAR_ERRORS
 } from '../types';
 
-const AuthState = ({ children }) => {
-  const initialState = {
-    token: localStorage.getItem('token'),
-    isAuthenticated: null,
-    loading: true,
-    user: null,
-    error: null
-  };
-  const [state, dispatch] = useReducer(authReducer, initialState);
+const AuthContext = createContext();
+const initialState = {
+  token: localStorage.getItem('token'),
+  isAuthenticated: null,
+  loading: true,
+  user: null,
+  error: null
+};
+const config = {
+  headers: {
+    'Content-Type': 'application/json'
+  }
+};
+
+export const AuthProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
   const { token, isAuthenticated, loading, user, error } = state;
-  const config = {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  };
 
   const loadUser = async () => {
     setAuthToken(localStorage.token);
@@ -99,4 +100,4 @@ const AuthState = ({ children }) => {
   );
 };
 
-export default AuthState;
+export const useAuthContext = () => useContext(AuthContext);
