@@ -6,7 +6,7 @@ import ContactContext from '../../context/contact/contactContext';
 
 const Navbar = ({ title, icon }) => {
   const authContext = useContext(AuthContext);
-  const { isAuthenticated, logout, user, loadUser } = authContext;
+  const { isAuthenticated, logoutUser, user, loadUser } = authContext;
   const contactContext = useContext(ContactContext);
   const { clearContacts } = contactContext;
 
@@ -15,7 +15,7 @@ const Navbar = ({ title, icon }) => {
   }, []);
 
   const onLogout = () => {
-    logout();
+    logoutUser();
     clearContacts();
   };
 

@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import AuthContext from '../../context/auth/authContext';
 import AlertContext from '../../context/alert/alertContext';
 
-const Login = (history) => {
+const Login = ({ history }) => {
   const [user, setUser] = useState({
     email: '',
     password: ''
@@ -11,7 +11,7 @@ const Login = (history) => {
   const alertContext = useContext(AlertContext);
   const { setAlert } = alertContext;
   const authContext = useContext(AuthContext);
-  const { login, error, clearErrors, isAuthenticated } = authContext;
+  const { loginUser, error, clearErrors, isAuthenticated } = authContext;
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -30,7 +30,7 @@ const Login = (history) => {
     if (email === '' || password === '') {
       setAlert('Please fill in all fields', 'danger');
     } else {
-      login({
+      loginUser({
         email,
         password
       });

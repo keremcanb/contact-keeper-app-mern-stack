@@ -10,7 +10,7 @@ const ContactForm = () => {
   });
   const { name, email, phone, type } = contact;
   const contactContext = useContext(ContactContext);
-  const { addContact, updateContact, clearCurrent, current } = contactContext;
+  const { addContact, updateContact, clearCurrentContact, current } = contactContext;
 
   useEffect(() => {
     if (current !== null) {
@@ -28,7 +28,7 @@ const ContactForm = () => {
   const onChange = (e) => setContact({ ...contact, [e.target.name]: e.target.value });
 
   const clearAll = () => {
-    clearCurrent();
+    clearCurrentContact();
   };
 
   const onSubmit = (e) => {

@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import AlertContext from '../../context/alert/alertContext';
 import AuthContext from '../../context/auth/authContext';
 
-const Register = (history) => {
+const Register = ({ history }) => {
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -11,9 +11,9 @@ const Register = (history) => {
   });
   const { name, email, password, passwordConfirm } = user;
   const alertContext = useContext(AlertContext);
-  const authContext = useContext(AuthContext);
   const { setAlert } = alertContext;
-  const { register, error, clearErrors, isAuthenticated } = authContext;
+  const authContext = useContext(AuthContext);
+  const { registerUser, error, clearErrors, isAuthenticated } = authContext;
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -34,7 +34,7 @@ const Register = (history) => {
     } else if (password !== passwordConfirm) {
       setAlert('Passwords do not match', 'danger');
     } else {
-      register({
+      registerUser({
         name,
         email,
         password
