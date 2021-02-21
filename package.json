@@ -1,7 +1,6 @@
 {
-  "name": "contact-keeper",
+  "name": "contactkeeper-server",
   "version": "1.0.0",
-  "description": "Contact manager app",
   "main": "server.js",
   "scripts": {
     "start": "node server/server",
@@ -11,9 +10,6 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "config": "^3.3.3",
@@ -23,13 +19,18 @@
     "mongoose": "^5.11.15"
   },
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "concurrently": "^4.1.2",
-    "eslint": "^7.18.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-config-prettier": "^6.15.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-prettier": "^3.3.1",
-    "nodemon": "^1.19.4",
-    "prettier": "^2.2.1"
+    "eslint": "^7.11.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-wesbos": "^1.0.1",
+    "eslint-plugin-html": "^6.1.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-react-hooks": "^4.1.2",
+    "prettier": "^2.1.1"
   }
 }
